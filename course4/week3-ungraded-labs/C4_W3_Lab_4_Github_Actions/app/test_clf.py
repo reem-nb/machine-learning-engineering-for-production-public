@@ -1,3 +1,5 @@
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 import pickle
 from main import clf
 
@@ -16,3 +18,13 @@ def test_accuracy():
 
     # Accuracy should be over 90%
     assert acc > 0.9
+
+def test_pipeline_and_scaler():
+    #check if clf is an instance of sklearn.pipeline.Pipeline
+    isPipeline = isinstance(clf, Pipeline)
+    assert isPipeline
+
+    if isPipeline:
+    #check if first step of pipeline is an instance of sklearn.preprocessing.StandataScaler
+    firstStep = [v for v in clf.named_steps.values()][0]
+    assert isinstance(firstStep, StandardScaler)
